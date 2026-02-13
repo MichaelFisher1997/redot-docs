@@ -32,7 +32,7 @@ Tutorials
 
 - :doc:`Runtime file loading and saving <../tutorials/io/runtime_file_loading_and_saving>`
 
-- `glTF asset header schema <https://github.com/KhronosGroup/glTF/blob/main/specification/2.0/schema/asset.schema.json">`__
+- `glTF asset header schema <https://github.com/KhronosGroup/glTF/blob/main/specification/2.0/schema/asset.schema.json>`__
 
 .. rst-class:: classref-reftable-group
 
@@ -261,7 +261,7 @@ The folder path associated with this glTF data. This is used to find other files
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -297,7 +297,7 @@ The copyright string in the asset header of the glTF file. This is set during im
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -386,7 +386,7 @@ The original raw JSON document corresponding to this GLTFState.
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -405,7 +405,7 @@ The original raw JSON document corresponding to this GLTFState.
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -460,7 +460,7 @@ The name of the scene. When importing, if not specified, this will be the file n
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-section-separator
 
@@ -477,7 +477,7 @@ Method Descriptions
 
 |void| **add_used_extension**\ (\ extension_name\: :ref:`String<class_String>`, required\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_GLTFState_method_add_used_extension>`
 
-Appends an extension to the list of extensions used by this glTF file during serialization. If ``required`` is ``true``, the extension will also be added to the list of required extensions. Do not run this in :ref:`GLTFDocumentExtension._export_post<class_GLTFDocumentExtension_private_method__export_post>`, as that stage is too late to add extensions. The final list is sorted alphabetically.
+Appends an extension to the list of extensions used by this glTF file during serialization. If ``required`` is ``true``, the extension will also be added to the list of required extensions. Do not run this in :ref:`GLTFDocumentExtension._export_post()<class_GLTFDocumentExtension_private_method__export_post>`, as that stage is too late to add extensions. The final list is sorted alphabetically.
 
 .. rst-class:: classref-item-separator
 
@@ -489,7 +489,7 @@ Appends an extension to the list of extensions used by this glTF file during ser
 
 :ref:`int<class_int>` **append_data_to_buffers**\ (\ data\: :ref:`PackedByteArray<class_PackedByteArray>`, deduplication\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_GLTFState_method_append_data_to_buffers>`
 
-Appends the given byte array data to the buffers and creates a :ref:`GLTFBufferView<class_GLTFBufferView>` for it. The index of the destination :ref:`GLTFBufferView<class_GLTFBufferView>` is returned. If ``deduplication`` is ``true``, the buffers will first be searched for duplicate data, otherwise new bytes will always be appended.
+Appends the given byte array ``data`` to the buffers and creates a :ref:`GLTFBufferView<class_GLTFBufferView>` for it. The index of the destination :ref:`GLTFBufferView<class_GLTFBufferView>` is returned. If ``deduplication`` is ``true``, the buffers are first searched for duplicate data, otherwise new bytes are always appended.
 
 .. rst-class:: classref-item-separator
 
@@ -501,7 +501,7 @@ Appends the given byte array data to the buffers and creates a :ref:`GLTFBufferV
 
 :ref:`int<class_int>` **append_gltf_node**\ (\ gltf_node\: :ref:`GLTFNode<class_GLTFNode>`, godot_scene_node\: :ref:`Node<class_Node>`, parent_node_index\: :ref:`int<class_int>`\ ) :ref:`🔗<class_GLTFState_method_append_gltf_node>`
 
-Append the given :ref:`GLTFNode<class_GLTFNode>` to the state, and return its new index. This can be used to export one Redot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this must be called before :ref:`GLTFDocumentExtension._generate_scene_node<class_GLTFDocumentExtension_private_method__generate_scene_node>` finishes for the parent node. On export, this must be called before :ref:`GLTFDocumentExtension._export_node<class_GLTFDocumentExtension_private_method__export_node>` runs for the parent node.
+Appends the given :ref:`GLTFNode<class_GLTFNode>` to the state, and returns its new index. This can be used to export one Redot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this must be called before :ref:`GLTFDocumentExtension._generate_scene_node()<class_GLTFDocumentExtension_private_method__generate_scene_node>` finishes for the parent node. On export, this must be called before :ref:`GLTFDocumentExtension._export_node()<class_GLTFDocumentExtension_private_method__export_node>` runs for the parent node.
 
 The ``godot_scene_node`` parameter is the Redot scene node that corresponds to this glTF node. This is highly recommended to be set to a valid node, but may be ``null`` if there is no corresponding Redot scene node. One Redot scene node may be used for multiple glTF nodes, so if exporting multiple glTF nodes for one Redot scene node, use the same Redot scene node for each.
 
@@ -519,7 +519,7 @@ The ``parent_node_index`` parameter is the index of the parent :ref:`GLTFNode<cl
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -583,7 +583,7 @@ Returns an array of all :ref:`GLTFAnimation<class_GLTFAnimation>`\ s in the glTF
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -609,7 +609,7 @@ Returns an array of all :ref:`GLTFCamera<class_GLTFCamera>`\ s in the glTF file.
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -647,7 +647,7 @@ Returns an array of all :ref:`GLTFLight<class_GLTFLight>`\ s in the glTF file. T
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -671,7 +671,7 @@ Returns an array of all :ref:`GLTFMesh<class_GLTFMesh>`\ es in the glTF file. Th
 
 :ref:`int<class_int>` **get_node_index**\ (\ scene_node\: :ref:`Node<class_Node>`\ ) :ref:`🔗<class_GLTFState_method_get_node_index>`
 
-Returns the index of the :ref:`GLTFNode<class_GLTFNode>` corresponding to this Redot scene node. This is the inverse of :ref:`get_scene_node<class_GLTFState_method_get_scene_node>`. Useful during the export process.
+Returns the index of the :ref:`GLTFNode<class_GLTFNode>` corresponding to this Redot scene node. This is the inverse of :ref:`get_scene_node()<class_GLTFState_method_get_scene_node>`. Useful during the export process.
 
 \ **Note:** Not every Redot scene node will have a corresponding :ref:`GLTFNode<class_GLTFNode>`, and not every :ref:`GLTFNode<class_GLTFNode>` will have a scene node generated. If there is no :ref:`GLTFNode<class_GLTFNode>` index for this scene node, ``-1`` is returned.
 
@@ -697,7 +697,7 @@ Returns an array of all :ref:`GLTFNode<class_GLTFNode>`\ s in the glTF file. The
 
 :ref:`Node<class_Node>` **get_scene_node**\ (\ idx\: :ref:`int<class_int>`\ ) :ref:`🔗<class_GLTFState_method_get_scene_node>`
 
-Returns the Redot scene node that corresponds to the same index as the :ref:`GLTFNode<class_GLTFNode>` it was generated from. This is the inverse of :ref:`get_node_index<class_GLTFState_method_get_node_index>`. Useful during the import process.
+Returns the Redot scene node that corresponds to the same index as the :ref:`GLTFNode<class_GLTFNode>` it was generated from. This is the inverse of :ref:`get_node_index()<class_GLTFState_method_get_node_index>`. Useful during the import process.
 
 \ **Note:** Not every :ref:`GLTFNode<class_GLTFNode>` will have a scene node generated, and not every generated scene node will have a corresponding :ref:`GLTFNode<class_GLTFNode>`. If there is no scene node for this :ref:`GLTFNode<class_GLTFNode>` index, ``null`` is returned.
 
@@ -749,7 +749,7 @@ Retrieves the array of texture samplers that are used by the textures contained 
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -787,7 +787,7 @@ Returns an array of unique node names. This is used in both the import process a
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -827,7 +827,7 @@ Sets the :ref:`GLTFAnimation<class_GLTFAnimation>`\ s in the state. When importi
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -853,7 +853,7 @@ Sets the :ref:`GLTFCamera<class_GLTFCamera>`\ s in the state. These are the came
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -891,7 +891,7 @@ Sets the :ref:`GLTFLight<class_GLTFLight>`\ s in the state. These are the lights
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -965,7 +965,7 @@ Sets the array of texture samplers that are used by the textures contained in th
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -992,6 +992,7 @@ Sets the unique animation names in the state. This is only used during the impor
 Sets the unique node names in the state. This is used in both the import process and export process.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -178,12 +178,12 @@ html_title = supported_languages[language] % ("(" + version + ")")
 # Edit on GitHub options: https://docs.readthedocs.io/en/latest/guides/edit-source-links-sphinx.html
 html_context = {
     "display_github": not is_i18n,  # Integrate GitHub
-    "github_user": "godotengine",  # Username
-    "github_repo": "godot-docs",  # Repo name
+    "github_user": "Redot-Engine",  # Username
+    "github_repo": "redot-docs",  # Repo name
     "github_version": "master",  # Version
     "conf_py_path": "/",  # Path in the checkout to the docs root
     "godot_docs_title": supported_languages[language],
-    "godot_docs_basepath": "https://docs.godotengine.org/",
+    "godot_docs_basepath": "https://docs.redotengine.org/",
     "godot_docs_suffix": ".html",
     # Distinguish local development website from production website.
     # This prevents people from looking for changes on the production website after making local changes :)
@@ -196,6 +196,12 @@ html_context = {
     "godot_show_article_status": True,
     # Display user-contributed notes at the bottom of pages that don't have `:allow_comments: False` at the top.
     "godot_show_article_comments": on_rtd and not is_i18n,
+    # Available documentation versions for the version selector
+    "godot_versions": [
+        ("4.3", "/4.3/"),
+        ("4.4", "/4.4/"),
+        ("dev", "/dev/"),
+    ],
 }
 
 html_logo = "img/docs_logo.svg"

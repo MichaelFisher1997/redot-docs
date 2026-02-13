@@ -1,0 +1,117 @@
+name: Build and Deploy Documentation
+
+on:
+  push:
+    branches:
+      - master
+      - 26.1
+      - feature/versioning-setup
+  pull_request:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build docs (26.1)
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Save build script and checkout master with 26.1 config
+        run: |
+          # Save the updated build.sh from feature branch
+          cp build.sh /tmp/build-with-versions.sh
+          chmod +x /tmp/build-with-versions.sh
+          # Add upstream remote
+          git remote add upstream https://github.com/Redot-Engine/redot-docs.git 2>/dev/null || true
+          # Fetch 26.1 branch to get its config
+          git fetch origin 26.1
+          # Save 26.1 conf.py
+          git show origin/26.1:conf.py > /tmp/conf-26.1.py
+          # Now checkout master from upstream (has all latest docs including MCP)
+          git fetch upstream master
+          git checkout upstream/master
+          # Copy 26.1 conf.py to override master version
+          cp /tmp/conf-26.1.py conf.py
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Cache migrated files
+        uses: actions/cache@v4
+        id: cache-migrated
+        with:
+          path: _migrated
+          key: migrated-26.1-${{ hashFiles('**/*.rst', 'conf.py', 'migrate.py') }}
+
+      - name: Cache Sphinx doctrees
+        uses: actions/cache@v4
+        with:
+          path: _sphinx/.doctrees
+          key: doctrees-26.1-${{ github.run_id }}
+          restore-keys: |
+            doctrees-26.1-
+            doctrees-
+
+      - name: Build documentation for 26.1
+        run: |
+          # Use the saved build.sh which supports BUILD_DIR
+          export FULL_RUN=1
+          export BUILD_DIR="26.1"
+          /tmp/build-with-versions.sh
+        env:
+          FULL_RUN: 1
+          BUILD_DIR: "26.1"
+
+      - name: Copy build to root structure
+        run: |
+          mkdir -p ./dist
+          cp -r output/html/en/26.1/* ./dist/
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: redot-docs-26.1
+          path: ./dist
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/26.1' || github.ref == 'refs/heads/feature/versioning-setup')
+    
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: redot-docs-26.1
+          path: .
+
+      - name: List built files
+        run: |
+          echo "Built files:"
+          ls -la
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=redot-docs --branch=master
