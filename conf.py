@@ -178,8 +178,8 @@ html_title = supported_languages[language] % ("(" + version + ")")
 # Edit on GitHub options: https://docs.readthedocs.io/en/latest/guides/edit-source-links-sphinx.html
 html_context = {
     "display_github": not is_i18n,  # Integrate GitHub
-    "github_user": "godotengine",  # Username
-    "github_repo": "godot-docs",  # Repo name
+    "github_user": "Redot-Engine",  # Username
+    "github_repo": "redot-docs",  # Repo name
     "github_version": "master",  # Version
     "conf_py_path": "/",  # Path in the checkout to the docs root
     "godot_docs_title": supported_languages[language],
